@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS "new".shipping_agreement CASCADE;
 CREATE TABLE IF NOT EXISTS "new".shipping_agreement (
 	agreementid int4 NOT NULL,
 	agreement_number varchar(20) NULL,
-	agreement_rate numeric(14, 2) NULL,
+	agreement_rate numeric(14, 4) NULL,
 	agreement_commission numeric(14, 2) NULL,
 	CONSTRAINT shipping_agreement_pk PRIMARY KEY (agreementid)
 );
@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS "new".shipping_country_rates CASCADE;
 CREATE TABLE IF NOT EXISTS "new".shipping_country_rates (
 	shipping_country_id serial4 NOT NULL,
 	shipping_country varchar(20) NULL,
-	shipping_country_base_rate numeric(14, 2) NULL,
+	shipping_country_base_rate numeric(14, 4) NULL,
 	CONSTRAINT shipping_country_rates_pk PRIMARY KEY (shipping_country_id)
 );
 
@@ -74,9 +74,9 @@ CREATE TABLE IF NOT EXISTS "new".shipping_info (
 	shipping_country_id int8 NULL,
 	agreementid int8 NULL,
 	CONSTRAINT shipping_info_pk PRIMARY KEY (shippingid),
-	CONSTRAINT shipping_info_countyrates FOREIGN KEY (shipping_country_id) REFERENCES "new".shipping_country_rates(shipping_country_id) ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT shipping_info_fk_agreement FOREIGN KEY (agreementid) REFERENCES "new".shipping_agreement(agreementid) ON DELETE CASCADE ON UPDATE CASCADE,
-	CONSTRAINT shipping_info_fk_transfer FOREIGN KEY (transfer_type_id) REFERENCES "new".shipping_transfer(transfer_type_id) ON DELETE CASCADE ON UPDATE CASCADE
+	CONSTRAINT shipping_info_countyrates FOREIGN KEY (shipping_country_id) REFERENCES "new".shipping_country_rates(shipping_country_id) ON UPDATE CASCADE,
+	CONSTRAINT shipping_info_fk_agreement FOREIGN KEY (agreementid) REFERENCES "new".shipping_agreement(agreementid) ON UPDATE CASCADE,
+	CONSTRAINT shipping_info_fk_transfer FOREIGN KEY (transfer_type_id) REFERENCES "new".shipping_transfer(transfer_type_id) ON UPDATE CASCADE
 );
 
 
