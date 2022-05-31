@@ -9,8 +9,8 @@ DROP TABLE IF EXISTS "new".shipping_agreement CASCADE;
 CREATE TABLE IF NOT EXISTS "new".shipping_agreement (
 	agreementid int4 NOT NULL,
 	agreement_number varchar(20) NULL,
-	agreement_rate numeric(14, 4) NULL,
-	agreement_commission numeric(14, 2) NULL,
+	agreement_rate numeric(14, 3) NULL,
+	agreement_commission numeric(14, 3) NULL,
 	CONSTRAINT shipping_agreement_pk PRIMARY KEY (agreementid)
 );
 
@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS "new".shipping_country_rates CASCADE;
 CREATE TABLE IF NOT EXISTS "new".shipping_country_rates (
 	shipping_country_id serial4 NOT NULL,
 	shipping_country varchar(20) NULL,
-	shipping_country_base_rate numeric(14, 4) NULL,
+	shipping_country_base_rate numeric(14, 3) NULL,
 	CONSTRAINT shipping_country_rates_pk PRIMARY KEY (shipping_country_id)
 );
 
